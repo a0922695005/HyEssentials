@@ -1,5 +1,6 @@
 package cc.moecraft.hykilpikonna.essentials;
 
+import cc.moecraft.hykilpikonna.essentials.Language.LanguageAPI;
 import cc.moecraft.hykilpikonna.essentials.logger.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,6 +15,9 @@ public class Main extends JavaPlugin
     //实例接口
     private static Main instance = null;
 
+    //语言API监听器注册
+    private LanguageAPI languageAPIListener = new LanguageAPI();
+
     //配置文件
     public static Config config = new Config();
 
@@ -24,6 +28,9 @@ public class Main extends JavaPlugin
     {
         //注册实例接口
         instance = this;
+
+        //注册语言API事件监听器
+        getServer().getPluginManager().registerEvents(languageAPIListener, this);
 
         //设置复制默认配置 = 真
         config.getConfig().options().copyDefaults(true);
@@ -36,7 +43,7 @@ public class Main extends JavaPlugin
      * 获取实例
      * @return 实例
      */
-    public static Main getMain()
+    public static Main getInstance()
     {
         return instance;
     }

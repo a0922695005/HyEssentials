@@ -7,24 +7,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0c2604c-41da-4f51-817a-e27ddce2ce51" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/dictionaries/Kilpikonna.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Language/Button.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Language/GUI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Language/GeoLocation.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Language/LanguageAPI.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Language/Menu.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Language/MenuInteractEvent.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Language/Messages/Messages.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Language/Messages/MsgForThisPlugin.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Unused/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Configs/YamlConfig.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Utils/PluginUtil.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Utils/StringUtils.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -44,7 +28,7 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
+            <state relative-caret-position="195">
               <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
               <folding>
                 <element signature="e#783#784#0" expanded="true" />
@@ -57,7 +41,7 @@
       <file leaf-file-name="PluginUtil.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Utils/PluginUtil.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
+            <state relative-caret-position="803">
               <caret line="185" column="83" lean-forward="true" selection-start-line="185" selection-start-column="83" selection-end-line="185" selection-end-column="83" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -70,7 +54,7 @@
         <entry file="file://$PROJECT_DIR$/src/plugin.yml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="19">
-              <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+              <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -79,11 +63,15 @@
       <file leaf-file-name="UrlUpdater.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="77" column="34" lean-forward="true" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+            <state relative-caret-position="-1154">
+              <caret line="137" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <marker date="1500364446338" expanded="true" signature="6336:6396" ph="{...}" />
+                <element signature="e#2853#3293#0" expanded="true" />
+                <element signature="e#3292#3293#0" expanded="true" />
+                <element signature="e#3520#3960#0" expanded="true" />
+                <element signature="e#3959#3960#0" expanded="true" />
+                <marker date="1500367772592" expanded="true" signature="7647:7707" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -106,8 +94,8 @@
       <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="784">
-              <caret line="73" column="26" lean-forward="true" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="45" />
+            <state relative-caret-position="613">
+              <caret line="75" column="27" lean-forward="false" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="67" />
               <folding />
             </state>
           </provider>
@@ -174,9 +162,9 @@
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Configs/YamlConfig.java" />
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/Updater.java" />
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Utils/StringUtils.java" />
-        <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" />
         <option value="$PROJECT_DIR$/src/pw/yumc/Yum/managers/PluginsManager.java" />
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Utils/PluginUtil.java" />
+        <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" />
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java" />
         <option value="$PROJECT_DIR$/src/plugin.yml" />
       </list>
@@ -834,12 +822,12 @@
       <updated>1496861092515</updated>
       <workItem from="1500301134015" duration="99000" />
       <workItem from="1500301261082" duration="1222000" />
-      <workItem from="1500351137552" duration="6193000" />
+      <workItem from="1500351137552" duration="8721000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7514000" />
+    <option name="totallyTimeSpent" value="10042000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -860,7 +848,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28731343" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28731343" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1277,14 +1265,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="784">
-          <caret line="73" column="26" lean-forward="true" selection-start-line="73" selection-start-column="26" selection-end-line="73" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/pw/yumc/Yum/managers/PluginsManager.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="366">
@@ -1293,9 +1273,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Utils/PluginUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="803">
+          <caret line="185" column="83" lean-forward="true" selection-start-line="185" selection-start-column="83" selection-end-line="185" selection-end-column="83" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
+        <state relative-caret-position="195">
           <caret line="20" column="11" lean-forward="false" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
           <folding>
             <element signature="e#783#784#0" expanded="true" />
@@ -1304,23 +1294,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Utils/PluginUtil.java">
+    <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="185" column="83" lean-forward="true" selection-start-line="185" selection-start-column="83" selection-end-line="185" selection-end-column="83" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="613">
+          <caret line="75" column="27" lean-forward="false" selection-start-line="75" selection-start-column="27" selection-end-line="75" selection-end-column="67" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="77" column="34" lean-forward="true" selection-start-line="77" selection-start-column="34" selection-end-line="77" selection-end-column="34" />
+        <state relative-caret-position="-1154">
+          <caret line="137" column="5" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="248" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <marker date="1500364446338" expanded="true" signature="6336:6396" ph="{...}" />
+            <element signature="e#2853#3293#0" expanded="true" />
+            <element signature="e#3292#3293#0" expanded="true" />
+            <element signature="e#3520#3960#0" expanded="true" />
+            <element signature="e#3959#3960#0" expanded="true" />
+            <marker date="1500367772592" expanded="true" signature="7647:7707" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1328,7 +1320,7 @@
     <entry file="file://$PROJECT_DIR$/src/plugin.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
-          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <caret line="1" column="14" lean-forward="false" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
           <folding />
         </state>
       </provider>

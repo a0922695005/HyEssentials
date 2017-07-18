@@ -1,6 +1,5 @@
 package cc.moecraft.hykilpikonna.essentials.updater;
 
-import cc.moecraft.hykilpikonna.essentials.Configs.YamlConfig;
 import cc.moecraft.hykilpikonna.essentials.Main;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -39,7 +38,21 @@ public class UrlUpdater
      * @param latestFileURL 最新的文件URL地址
      * @param latestPluginYmlURL 最新的Plugin.yml地址
      */
-    public UrlUpdater(File currentPluginFile, Plugin currentVersion, URL latestFileURL, URL latestPluginYmlURL, boolean update)
+    public UrlUpdater(File currentPluginFile, Plugin currentVersion, URL latestFileURL, URL latestPluginYmlURL, boolean repeatUpdate)
+    {
+        this(currentPluginFile, currentVersion, latestFileURL, latestPluginYmlURL, repeatUpdate, getMain().getConfig().getInt("AutoUpdate.Repeat.DefaultPeriodInSeconds"));
+    }
+
+    /**
+     * URL插件更新器
+     * @param currentPluginFile 更新前的文件路径
+     * @param currentVersion 当前的插件
+     * @param latestFileURL 最新的文件URL地址
+     * @param latestPluginYmlURL 最新的Plugin.yml地址
+     * @param repeatUpdate 是否间隔时间检查更新
+     * @param period 间隔的时间(秒)
+     */
+    public UrlUpdater(File currentPluginFile, Plugin currentVersion, URL latestFileURL, URL latestPluginYmlURL, boolean repeatUpdate, long period)
     {
         this.tempFilePath = Main.getMain().getDataFolder() + "/temp/" + currentVersion.getDescription().getName() + "/" + System.currentTimeMillis();
 
@@ -51,7 +64,7 @@ public class UrlUpdater
 
         this.currentPlugin = currentVersion;
 
-        if (update) update();
+        if (repeatUpdate) repeatUpdate(period);
     }
 
     /**
@@ -65,25 +78,51 @@ public class UrlUpdater
     }
 
     /**
-     * 更新
-     * @return 是否更新成功
+     * 自动更新
      */
-    public boolean update()
+    public void repeatUpdate(long period)
     {
-        final Boolean[] output = {false};
-        Runnable runnable = () ->
+        Thread thread = new Thread((Runnable) new BukkitRunnable()
         {
-            if (getMain().getConfig().getBoolean("AutoUpdate.Enable"))
+            @Override
+            public void run()
             {
-                if (checkUpdate())
+                if (getMain().getConfig().getBoolean("AutoUpdate.Enable"))
                 {
-                    output[0] = downloadFile(latestPluginFile, currentPluginFile);
-                    reload(currentPlugin);
+                    if (checkUpdate())
+                    {
+                        downloadFile(latestPluginFile, currentPluginFile);
+                        reload(currentPlugin);
+                    }
                 }
             }
-        };
-        Bukkit.getScheduler().runTaskAsynchronously(getMain(), runnable);
-        return output[0];
+            }.runTaskTimerAsynchronously(getMain(), 0L, period));
+        thread.setName("Update Check");
+        thread.start();
+    }
+
+    /**
+     * 更新
+     */
+    public void update()
+    {
+        Thread thread = new Thread((Runnable) new BukkitRunnable()
+        {
+            @Override
+            public void run()
+            {
+                if (getMain().getConfig().getBoolean("AutoUpdate.Enable"))
+                {
+                    if (checkUpdate())
+                    {
+                        downloadFile(latestPluginFile, currentPluginFile);
+                        reload(currentPlugin);
+                    }
+                }
+            }
+            }.runTaskAsynchronously(getMain()));
+        thread.setName("Update Check");
+        thread.start();
     }
 
     /**

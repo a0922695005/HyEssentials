@@ -73,6 +73,7 @@ public class Config
 
         config.addDefault("AutoUpdate.Enable", true);
         config.addDefault("AutoUpdate.Downloader.TimeoutInSeconds", 3);
+        config.addDefault("AutoUpdate.Repeat.DefaultPeriodInSeconds", 3600);
     }
 
     private void writeConfig()

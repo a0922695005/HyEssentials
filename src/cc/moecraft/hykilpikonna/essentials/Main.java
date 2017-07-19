@@ -15,7 +15,7 @@ public class Main extends JavaPlugin
     private static Main instance = null;
 
     //配置文件
-    public static Config config = new Config();
+    public static Config config;
 
     /**
      * 加载插件
@@ -25,10 +25,8 @@ public class Main extends JavaPlugin
         //注册实例接口
         instance = this;
 
-        //设置复制默认配置 = 真
-        config.getConfig().options().copyDefaults(true);
-        config.checkConfig();
-        config.saveConfig();
+        config = new Config();
+
         loglogger.log("已加载此前置插件!");
     }
 

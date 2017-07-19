@@ -1,28 +1,29 @@
 package cc.moecraft.hykilpikonna.essentials.Utils;
 
 /*
+ * #%L
  * PlugMan
- *
+ * %%
  * Copyright (C) 2010 - 2014 PlugMan
- *
+ * %%
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- *
+ * 
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- *
+ * 
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFINGEMENT. IN NO EVENT SHALL THE
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
- *
+ * #L%
  */
 
 import org.bukkit.Bukkit;
@@ -41,39 +42,38 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static cc.moecraft.hykilpikonna.essentials.Main.getMain;
+import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
 
 /**
- * Credit to @rylinaux.
+ * Utilities for managing plugins.
+ *
+ * @author rylinaux
  */
-public class PluginUtil
-{
+public class PluginUtil {
+    public static Plugin getPluginByName(String name) {
+        for (Plugin plugin : Bukkit.getPluginManager().getPlugins()) {
+            if (name.equalsIgnoreCase(plugin.getName()))
+                return plugin;
+        }
+        return null;
+    }
+
+    public static List<String> getPluginNames(boolean fullName) {
+        List<String> plugins = new ArrayList<>();
+        for (Plugin plugin : Bukkit.getPluginManager().getPlugins())
+            plugins.add(fullName ? plugin.getDescription().getFullName() : plugin.getName());
+        return plugins;
+    }
+    
     public static boolean load(String name) {
         Plugin target = null;
-        File pluginDir = new File("plugins");
-        if (!pluginDir.isDirectory())
-            return false;
-
-        File pluginFile = new File(pluginDir, name + ".jar");
-
-        if (!pluginFile.isFile()) {
-            for (File f : pluginDir.listFiles()) {
-                if (f.getName().endsWith(".jar")) {
-                    try {
-                        PluginDescriptionFile desc = getMain().getPluginLoader().getPluginDescription(f);
-                        if (desc.getName().equalsIgnoreCase(name)) {
-                            pluginFile = f;
-                            break;
-                        }
-                    } catch (InvalidDescriptionException e) {
-                        return false;
-                    }
-                }
-            }
-        }
+        File pluginFile = findPluginFile(name);
 
         try {
             target = Bukkit.getPluginManager().loadPlugin(pluginFile);
-        } catch (InvalidDescriptionException | InvalidPluginException e) {
+        }
+        catch (InvalidDescriptionException | InvalidPluginException e)
+        {
             return false;
         }
 
@@ -81,7 +81,59 @@ public class PluginUtil
         Bukkit.getPluginManager().enablePlugin(target);
 
         return true;
+    }
 
+    public static boolean load(File pluginFile)
+    {
+        loglogger.Debug("正在加载插件: ");
+        loglogger.Debug("  - File = " + pluginFile.getPath());
+        Plugin target;
+
+        try
+        {
+            target = Bukkit.getPluginManager().loadPlugin(pluginFile);
+            loglogger.Debug("加载成功");
+        }
+        catch (InvalidDescriptionException | InvalidPluginException e)
+        {
+            loglogger.Debug("加载失败");
+            e.printStackTrace();
+            return false;
+        }
+
+        target.onLoad();
+        Bukkit.getPluginManager().enablePlugin(target);
+
+        return true;
+    }
+
+    public static File findPluginFile(String name)
+    {
+        File pluginDir = new File("plugins");
+
+        File pluginFile = new File(pluginDir, name + ".jar");
+
+        if (!pluginFile.isFile())
+        {
+            for (File f : pluginDir.listFiles())
+            {
+                if (f.getName().endsWith(".jar"))
+                {
+                    try
+                    {
+                        PluginDescriptionFile desc = getMain().getPluginLoader().getPluginDescription(f);
+                        if (desc.getName().equalsIgnoreCase(name))
+                        {
+                            pluginFile = f;
+                            break;
+                        }
+                    }
+                    catch (InvalidDescriptionException ignored) {}
+                }
+            }
+        }
+
+        return pluginFile;
     }
 
     public static void reload(Plugin plugin) {

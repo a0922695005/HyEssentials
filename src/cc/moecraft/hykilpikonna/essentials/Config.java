@@ -1,5 +1,6 @@
 package cc.moecraft.hykilpikonna.essentials;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -14,16 +15,17 @@ import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
  */
 public class Config
 {
-    private static File configFile;
-    private static YamlConfiguration config;
+    private static FileConfiguration config;
 
     /**
      * Setup config class.
      */
     public Config()
     {
-        configFile = new File(getMain().getDataFolder() + "\\Configuration.yml");
-        config = YamlConfiguration.loadConfiguration(configFile);
+        config = getMain().getConfig();
+        config.options().copyDefaults(true);
+
+        checkConfig();
     }
 
     /**
@@ -31,24 +33,7 @@ public class Config
      */
     public void saveConfig()
     {
-        try
-        {
-            config.save(configFile);
-        }
-        catch (IOException e)
-        {
-            loglogger.Debug("[配置]保存失败");
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 获取配置变量
-     * @return 配置变量
-     */
-    public YamlConfiguration getConfig()
-    {
-        return config;
+        getMain().saveConfig();
     }
 
     /**

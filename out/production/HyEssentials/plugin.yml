@@ -1,5 +1,5 @@
 name: "HyEssentials"
-version: 0.2.3.1
+version: 0.2.3.2
 description: "An essential API plugin"
 author: Hykilpikonna
-main: cc.moecraft.cc.moecraft.hykilpikonna.cc.moecraft.hykilpikonna.essentials.Main
+main: cc.moecraft.hykilpikonna.essentials.Main

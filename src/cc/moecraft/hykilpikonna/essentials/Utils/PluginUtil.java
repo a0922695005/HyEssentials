@@ -64,7 +64,7 @@ public class PluginUtil {
             plugins.add(fullName ? plugin.getDescription().getFullName() : plugin.getName());
         return plugins;
     }
-    
+
     public static boolean load(String name) {
         Plugin target = null;
         File pluginFile = findPluginFile(name);

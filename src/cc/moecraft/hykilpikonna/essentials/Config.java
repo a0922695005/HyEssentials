@@ -57,8 +57,8 @@ public class Config
         writeConfig();
 
         config.addDefault("AutoUpdate.Enable", true);
-        config.addDefault("AutoUpdate.Downloader.TimeoutInSeconds", 3);
-        config.addDefault("AutoUpdate.Repeat.DefaultPeriodInSeconds", 3600);
+        config.addDefault("AutoUpdate.Default.TimeoutInSeconds", 3);
+        config.addDefault("AutoUpdate.Default.CheckDelayInSeconds", 3600);
     }
 
     private void writeConfig()

@@ -1,7 +1,5 @@
 package cc.moecraft.hykilpikonna.essentials.updater;
 
-import cc.moecraft.hykilpikonna.essentials.Main;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -9,11 +7,14 @@ import org.bukkit.scheduler.BukkitRunnable;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.nio.file.Files;
 
 import static cc.moecraft.hykilpikonna.essentials.Main.getMain;
 import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
+import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.load;
 import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.reload;
-import static cc.moecraft.hykilpikonna.essentials.Utils.StringUtils.removeInNumeric;
+import static org.bukkit.ChatColor.GREEN;
+import static org.bukkit.ChatColor.RED;
 
 /**
  * 此类由 Hykilpikonna 在 2017/07/16 创建!
@@ -29,7 +30,7 @@ public class UrlUpdater
     private String currentVersion;
     private String latestVersion;
 
-    private String tempFilePath;
+    private File tempPluginYmlPath;
 
     /**
      * URL插件更新器
@@ -40,7 +41,7 @@ public class UrlUpdater
      */
     public UrlUpdater(File currentPluginFile, Plugin currentVersion, URL latestFileURL, URL latestPluginYmlURL, boolean repeatUpdate)
     {
-        this(currentPluginFile, currentVersion, latestFileURL, latestPluginYmlURL, repeatUpdate, getMain().getConfig().getInt("AutoUpdate.Repeat.DefaultPeriodInSeconds"));
+        this(currentPluginFile, currentVersion, latestFileURL, latestPluginYmlURL, repeatUpdate, getMain().getConfig().getInt("AutoUpdate.Default.CheckDelayInSeconds"));
     }
 
     /**
@@ -54,15 +55,25 @@ public class UrlUpdater
      */
     public UrlUpdater(File currentPluginFile, Plugin currentVersion, URL latestFileURL, URL latestPluginYmlURL, boolean repeatUpdate, long period)
     {
-        this.tempFilePath = Main.getMain().getDataFolder() + "/temp/" + currentVersion.getDescription().getName() + "/" + System.currentTimeMillis();
+        this.tempPluginYmlPath = new File(getMain().getDataFolder() + "/temp/" + currentVersion.getDescription().getName() + "/" + System.currentTimeMillis() + "/plugin.yml");
+        createFile(tempPluginYmlPath);
 
         this.currentPluginFile = currentPluginFile;
         this.currentVersion = currentVersion.getDescription().getVersion();
-
+        this.currentPlugin = currentVersion;
         this.latestPluginFile = latestFileURL;
+
+        loglogger.Debug("已创建自动更新对象:");
+        loglogger.Debug("  - 当前插件路径 = " + this.currentPluginFile);
+        loglogger.Debug("  - 当前插件     = " + this.currentPlugin);
+        loglogger.Debug("  - 当前版本     = " + this.currentVersion);
+        loglogger.Debug("  - 最新URL      = " + this.latestPluginFile);
+        loglogger.Debug("  - 最新PluginYML= " + latestPluginYmlURL);
+        loglogger.Debug("  - 临时文件路径 = " + tempPluginYmlPath);
+
         this.latestVersion = downloadPluginYML(latestPluginYmlURL);
 
-        this.currentPlugin = currentVersion;
+        loglogger.Debug("  - 最新版本     = " + this.latestVersion);
 
         if (repeatUpdate) repeatUpdate(period);
     }
@@ -73,7 +84,6 @@ public class UrlUpdater
      */
     private boolean checkUpdate()
     {
-        loglogger.Debug("versionComparison(currentVersion, latestVersion) = " + versionComparison(currentVersion, latestVersion));
         return versionComparison(currentVersion, latestVersion) == 1;
     }
 
@@ -91,12 +101,12 @@ public class UrlUpdater
                 {
                     if (checkUpdate())
                     {
-                        downloadFile(latestPluginFile, currentPluginFile);
+                        downloadFileInOneLine(latestPluginFile, currentPluginFile);
                         reload(currentPlugin);
                     }
                 }
             }
-            }.runTaskTimerAsynchronously(getMain(), 0L, period));
+        }.runTaskTimerAsynchronously(getMain(), 0L, period * 1000));
         thread.setName("Update Check");
         thread.start();
     }
@@ -115,14 +125,29 @@ public class UrlUpdater
                 {
                     if (checkUpdate())
                     {
-                        downloadFile(latestPluginFile, currentPluginFile);
+                        downloadFileInOneLine(latestPluginFile, currentPluginFile);
                         reload(currentPlugin);
                     }
                 }
             }
-            }.runTaskAsynchronously(getMain()));
+        }.runTaskAsynchronously(getMain()));
         thread.setName("Update Check");
         thread.start();
+    }
+
+    /**
+     * 下载HyEssentials
+     */
+    public static void downloadHyEssentials(URL url)
+    {
+        loglogger.Debug("正在下载HyEssentials:");
+        loglogger.Debug("  - 当前URL = " + url);
+        File pluginDir = new File("plugins/HyEssentials.jar");
+        loglogger.Debug("已生成文件...");
+        downloadFileInOneLine(url, pluginDir);
+        loglogger.Debug("下载完成, 正在加载HyEssentials...");
+        load(pluginDir);
+        loglogger.Debug("加载完成!");
     }
 
     /**
@@ -132,9 +157,8 @@ public class UrlUpdater
      */
     private String downloadPluginYML(URL url)
     {
-        File pluginYml = new File(tempFilePath + "/plugin.yml");
-        downloadFile(url, pluginYml);
-        return getVersionFromPluginYML(pluginYml);
+        downloadFileInOneLine(url, tempPluginYmlPath);
+        return getVersionFromPluginYML(tempPluginYmlPath);
     }
 
     /**
@@ -147,14 +171,14 @@ public class UrlUpdater
      */
     private static boolean downloadFile(URL url, File file)
     {
-        if (file.exists())
-        {
-            file.delete();
-        }
+        loglogger.Debug("正在下载文件, ");
+        loglogger.Debug("  - URL = " + url);
+        loglogger.Debug("  - File = " + file);
+        if (file.exists()) file.delete();
         try
         {
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-            httpURLConnection.setConnectTimeout(getMain().getConfig().getInt("AutoUpdate.Downloader.TimeoutInSeconds") * 1000);
+            httpURLConnection.setConnectTimeout(getMain().getConfig().getInt("AutoUpdate.Default.TimeoutInSeconds") * 1000);
             httpURLConnection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
 
             InputStream inputStream = httpURLConnection.getInputStream();
@@ -171,9 +195,39 @@ public class UrlUpdater
         }
         catch (IOException ignored)
         {
-            loglogger.Debug("下载失败");
+            loglogger.Debug(RED + "下载失败");
+            ignored.printStackTrace();
             return false;
         }
+        loglogger.Debug(GREEN + "下载成功");
+        return true;
+    }
+
+    /**
+     * 一行代码下载文件
+     * 归功于 @喵呜
+     * Credit to @ admin@yumc.pw
+     * @param url 下载地址
+     * @param file 覆盖文件
+     * @return 是否下载成功
+     */
+    private static boolean downloadFileInOneLine(URL url, File file)
+    {
+        loglogger.Debug("正在下载文件, ");
+        loglogger.Debug("  - URL = " + url);
+        loglogger.Debug("  - File = " + file);
+        if (file.exists()) file.delete();
+        try
+        {
+            Files.copy(url.openConnection().getInputStream(), file.toPath());
+        }
+        catch (IOException ignored)
+        {
+            loglogger.Debug(RED + "下载失败:");
+            ignored.printStackTrace();
+            return false;
+        }
+        loglogger.Debug(GREEN + "下载成功");
         return true;
     }
 
@@ -228,6 +282,8 @@ public class UrlUpdater
      */
     public static int versionComparison(String currentVersion, String latestVersion)
     {
+        loglogger.Debug("开始版本比较...");
+        loglogger.Debug(String.format("输入 = %s, %s", currentVersion, latestVersion));
         String[] currentVersionAfterSplit = removeInNumeric(currentVersion).split("\\.");
         String[] latestVersionAfterSplit = removeInNumeric(latestVersion).split("\\.");
 
@@ -239,10 +295,141 @@ public class UrlUpdater
             int currentVersionAtI = i < currentLength ? Integer.parseInt(currentVersionAfterSplit[i]) : 0;
             int latestVersionAtI = i < latestLength ? Integer.parseInt(latestVersionAfterSplit[i]) : 0;
 
-            if (currentVersionAtI < latestVersionAtI) return -1;
-            if (currentVersionAtI > latestVersionAtI) return 1;
+            if (currentVersionAtI < latestVersionAtI)
+            {
+                loglogger.Debug("输出 = -1");
+                return -1;
+            }
+            if (currentVersionAtI > latestVersionAtI)
+            {
+                loglogger.Debug("输出 = 1");
+                return 1;
+            }
         }
-
+        loglogger.Debug("输出 = 0");
         return 0;
+    }
+
+    public static String removeInNumeric(String string)
+    {
+        if (string == null || string.equals("")) return "";
+
+        StringBuilder output = new StringBuilder();
+        for (Character aChar : string.toCharArray())
+        {
+            if (Character.isDigit(aChar)) output.append(aChar);
+            if (aChar == '.') output.append('.');
+        }
+        loglogger.Debug("去除非数字/小数点字符结果 = " + output.toString());
+        return output.toString();
+    }
+
+    /**
+     * 创建文件
+     * @param file 文件
+     * @return 是否成功
+     */
+    public static boolean createFile(File file)
+    {
+        if(file.exists())
+        {
+            loglogger.Debug(RED + "创建文件" + file + "失败");
+            return false;
+        }
+        if (file.toString().endsWith(File.separator))
+        {
+            loglogger.Debug(RED + "创建文件" + file + "失败, 目标文件不能为目录");
+            return false;
+        }
+        //判断目标文件所在的目录是否存在
+        if(!file.getParentFile().exists())
+        {
+            //如果目标文件所在的目录不存在，则创建父目录
+            loglogger.Debug("目标文件所在目录不存在, 正在创建...");
+            if(!file.getParentFile().mkdirs())
+            {
+                loglogger.Debug(RED + "创建目标文件所在目录失败");
+                return false;
+            }
+        }
+        //创建目标文件
+        try {
+            if (file.createNewFile()) {
+                loglogger.Debug(GREEN + "创建文件" + file + "成功");
+                return true;
+            } else {
+                loglogger.Debug(RED + "创建文件" + file + "失败");
+                return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            loglogger.Debug(RED + "创建文件" + file + "失败");
+            return false;
+        }
+    }
+
+    /**
+     * 创建目录
+     * @param destDirName 目录
+     * @return 是否成功
+     */
+    public static boolean createDir(String destDirName)
+    {
+        File dir = new File(destDirName);
+        if (dir.exists())
+        {
+            loglogger.Debug(RED + "创建目录" + destDirName + "失败, 目标目录已经存在");
+            return false;
+        }
+        if (!destDirName.endsWith(File.separator))
+        {
+            destDirName = destDirName + File.separator;
+        }
+        //创建目录
+        if (dir.mkdirs())
+        {
+            loglogger.Debug(GREEN + "创建目录" + destDirName + "成功!");
+            return true;
+        }
+        else
+        {
+            loglogger.Debug(RED + "创建目录" + destDirName + "失败!");
+            return false;
+        }
+    }
+
+
+    public static String createTempFile(String prefix, String suffix, String dirName) {
+        File tempFile = null;
+        if (dirName == null) {
+            try{
+                //在默认文件夹下创建临时文件
+                tempFile = File.createTempFile(prefix, suffix);
+                //返回临时文件的路径
+                return tempFile.getCanonicalPath();
+            } catch (IOException e) {
+                e.printStackTrace();
+                loglogger.Debug("创建临时文件失败！" + e.getMessage());
+                return null;
+            }
+        } else {
+            File dir = new File(dirName);
+            //如果临时文件所在目录不存在，首先创建
+            if (!dir.exists()) {
+                if (!createDir(dirName)) {
+                    loglogger.Debug("创建临时文件失败，不能创建临时文件所在的目录！");
+                    return null;
+                }
+            }
+            try {
+                //在指定目录下创建临时文件
+                tempFile = File.createTempFile(prefix, suffix, dir);
+                return tempFile.getCanonicalPath();
+            } catch (IOException e) {
+                e.printStackTrace();
+                loglogger.Debug("创建临时文件失败！" + e.getMessage());
+                return null;
+            }
+        }
     }
 }

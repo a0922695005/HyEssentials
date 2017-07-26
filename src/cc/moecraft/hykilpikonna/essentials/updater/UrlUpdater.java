@@ -13,6 +13,7 @@ import static cc.moecraft.hykilpikonna.essentials.Main.getMain;
 import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
 import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.load;
 import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.reload;
+import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.unload;
 import static org.bukkit.ChatColor.GREEN;
 import static org.bukkit.ChatColor.RED;
 
@@ -97,16 +98,26 @@ public class UrlUpdater
             @Override
             public void run()
             {
-                if (getMain().getConfig().getBoolean("AutoUpdate.Enable"))
-                {
-                    if (checkUpdate())
-                    {
-                        downloadFileInOneLine(latestPluginFile, currentPluginFile);
-                        reload(currentPlugin);
-                    }
-                }
+                update();
             }
-        }.runTaskTimerAsynchronously(getMain(), 0L, period * 1000));
+        }.runTaskTimerAsynchronously(getMain(), 0L, period * 20));
+        thread.setName("Update Check");
+        thread.start();
+    }
+
+    /**
+     * 更新
+     */
+    public void asyncUpdate()
+    {
+        Thread thread = new Thread((Runnable) new BukkitRunnable()
+        {
+            @Override
+            public void run()
+            {
+                update();
+            }
+        }.runTaskAsynchronously(getMain()));
         thread.setName("Update Check");
         thread.start();
     }
@@ -116,23 +127,15 @@ public class UrlUpdater
      */
     public void update()
     {
-        Thread thread = new Thread((Runnable) new BukkitRunnable()
+        if (getMain().getConfig().getBoolean("AutoUpdate.Enable"))
         {
-            @Override
-            public void run()
+            if (checkUpdate())
             {
-                if (getMain().getConfig().getBoolean("AutoUpdate.Enable"))
-                {
-                    if (checkUpdate())
-                    {
-                        downloadFileInOneLine(latestPluginFile, currentPluginFile);
-                        reload(currentPlugin);
-                    }
-                }
+                unload(currentPlugin);
+                downloadFileInOneLine(latestPluginFile, currentPluginFile);
+                reload(currentPlugin);
             }
-        }.runTaskAsynchronously(getMain()));
-        thread.setName("Update Check");
-        thread.start();
+        }
     }
 
     /**
@@ -295,15 +298,17 @@ public class UrlUpdater
             int currentVersionAtI = i < currentLength ? Integer.parseInt(currentVersionAfterSplit[i]) : 0;
             int latestVersionAtI = i < latestLength ? Integer.parseInt(latestVersionAfterSplit[i]) : 0;
 
+            loglogger.Debug(String.format("当前循环 %s 次, 比较两个数: %s, %s", i, currentVersionAtI, latestVersionAtI));
+
             if (currentVersionAtI < latestVersionAtI)
-            {
-                loglogger.Debug("输出 = -1");
-                return -1;
-            }
-            if (currentVersionAtI > latestVersionAtI)
             {
                 loglogger.Debug("输出 = 1");
                 return 1;
+            }
+            if (currentVersionAtI > latestVersionAtI)
+            {
+                loglogger.Debug("输出 = -1");
+                return -1;
             }
         }
         loglogger.Debug("输出 = 0");

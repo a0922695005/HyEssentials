@@ -77,7 +77,7 @@ public class Main extends JavaPlugin
         {
             boolean reloadYum = false;
 
-            if (!(getMain().getConfig().contains("AutoUpdate.YumNetworkCheckBypass") || getMain().getConfig().getBoolean("AutoUpdate.YumNetworkCheckBypass")))
+            if (!(getMain().getConfig().contains("AutoUpdate.YumNetworkCheckBypass")) || getMain().getConfig().getBoolean("AutoUpdate.YumNetworkCheckBypass"))
             {
                 File yumNetworkFile = new File("plugins/Yum/network.yml");
                 YamlConfiguration yumNetworkConfig = YamlConfiguration.loadConfiguration(yumNetworkFile);
@@ -100,7 +100,7 @@ public class Main extends JavaPlugin
                 tempLog(RED + "未开启YUM网络检测");
             }
 
-            if (!(getMain().getConfig().contains("AutoUpdate.DisableYumThreadCheck") || getMain().getConfig().getBoolean("AutoUpdate.DisableYumThreadCheck")))
+            if (!(getMain().getConfig().contains("AutoUpdate.DisableYumThreadCheck")) || getMain().getConfig().getBoolean("AutoUpdate.DisableYumThreadCheck"))
             {
                 File yumNetworkFile = new File("plugins/Yum/thread.yml");
                 YamlConfiguration yumThreadConfig = YamlConfiguration.loadConfiguration(yumNetworkFile);

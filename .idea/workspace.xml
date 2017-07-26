@@ -7,6 +7,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0c2604c-41da-4f51-817a-e27ddce2ce51" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
@@ -26,8 +27,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="280">
-              <caret line="85" column="17" lean-forward="true" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+            <state relative-caret-position="128">
+              <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -36,8 +37,8 @@
       <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="769">
-              <caret line="63" column="5" lean-forward="false" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+            <state relative-caret-position="617">
+              <caret line="61" column="64" lean-forward="false" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#626#627#0" expanded="true" />
@@ -110,6 +111,7 @@
       <find>getConfig</find>
       <find>tempDebug</find>
       <find>loglogger.Debug</find>
+      <find>HyUltimatePlugin</find>
     </findStrings>
     <replaceStrings>
       <replace>latest</replace>
@@ -117,6 +119,7 @@
       <replace>logloggger.Debug</replace>
       <replace>loglogger</replace>
       <replace>loglogger.Debug</replace>
+      <replace>HyEssentials</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -143,8 +146,8 @@
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Utils/PluginUtil.java" />
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java" />
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Configs/YamlConfig.java" />
-        <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" />
         <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java" />
+        <option value="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java" />
         <option value="$PROJECT_DIR$/src/plugin.yml" />
       </list>
     </option>
@@ -686,12 +689,12 @@
       <workItem from="1500631986739" duration="622000" />
       <workItem from="1500641752520" duration="29000" />
       <workItem from="1500660906046" duration="1543000" />
-      <workItem from="1501048022763" duration="7367000" />
+      <workItem from="1501048022763" duration="7941000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="32560000" />
+    <option name="totallyTimeSpent" value="33134000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1145,8 +1148,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="769">
-          <caret line="63" column="5" lean-forward="false" selection-start-line="63" selection-start-column="5" selection-end-line="63" selection-end-column="5" />
+        <state relative-caret-position="617">
+          <caret line="61" column="64" lean-forward="false" selection-start-line="61" selection-start-column="64" selection-end-line="61" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#626#627#0" expanded="true" />
@@ -1159,8 +1162,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="280">
-          <caret line="85" column="17" lean-forward="true" selection-start-line="85" selection-start-column="17" selection-end-line="85" selection-end-column="17" />
+        <state relative-caret-position="128">
+          <caret line="124" column="0" lean-forward="true" selection-start-line="124" selection-start-column="0" selection-end-line="124" selection-end-column="0" />
           <folding />
         </state>
       </provider>

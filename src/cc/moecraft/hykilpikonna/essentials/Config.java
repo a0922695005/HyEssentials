@@ -58,6 +58,8 @@ public class Config
 
         config.addDefault("AutoUpdate.YumNetworkCheckBypass", true);
         config.addDefault("AutoUpdate.DisableYumThreadCheck", true);
+        config.addDefault("AutoUpdate.YumMonitorBypass", true);
+        config.addDefault("AutoUpdate.DisableYumMonitor", true);
     }
 
     private void writeConfig()

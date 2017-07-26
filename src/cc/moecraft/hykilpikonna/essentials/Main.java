@@ -145,10 +145,31 @@ public class Main extends JavaPlugin
                 tempLog(RED + "未开启绕过YUM线程检测");
             }
 
+            if (!(getMain().getConfig().contains("AutoUpdate.DisableYumMonitor")) || getMain().getConfig().getBoolean("AutoUpdate.DisableYumMonitor"))
+            {
+                File yumNetworkFile = new File("plugins/Yum/monitor.yml");
+                YamlConfiguration yumThreadConfig = YamlConfiguration.loadConfiguration(yumNetworkFile);
+                if (yumThreadConfig.getBoolean("Enable"))
+                {
+                    tempLog("YUM开启了网络占用监控, 正在解除监控...");
+                    yumThreadConfig.set("Enable", false);
+                    yumThreadConfig.save(yumNetworkFile);
+                    reloadYum = true;
+                }
+                else
+                {
+                    tempLog(GREEN + "YUM配置中未开启网络占用监控");
+                }
+            }
+            else
+            {
+                tempLog(RED + "未开启绕过YUM网络占用监控");
+            }
+
             if (reloadYum)
             {
                 reload(yum);
-                tempLog("拦截解除成功!");
+                tempLog(GREEN + "拦截解除成功!");
             }
         }
         else

@@ -55,6 +55,9 @@ public class Config
         config.addDefault("AutoUpdate.Enable", true);
         config.addDefault("AutoUpdate.Default.TimeoutInSeconds", 3);
         config.addDefault("AutoUpdate.Default.CheckDelayInSeconds", 3600);
+
+        config.addDefault("AutoUpdate.YumNetworkCheckBypass", true);
+        config.addDefault("AutoUpdate.DisableYumThreadCheck", true);
     }
 
     private void writeConfig()

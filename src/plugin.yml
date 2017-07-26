@@ -1,5 +1,5 @@
 name: "HyEssentials"
-version: 0.2.4.3.19
+version: 0.2.4.3.20
 description: "An essential API plugin"
 loadbefore: [HyUltimatePlugin]
 author: Hykilpikonna

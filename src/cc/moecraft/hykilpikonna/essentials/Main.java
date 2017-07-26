@@ -99,73 +99,7 @@ public class Main extends JavaPlugin
             {
                 tempLog(RED + "未开启绕过YUM网络检测");
             }
-
-            if (!(getMain().getConfig().contains("AutoUpdate.YumMonitorBypass")) || getMain().getConfig().getBoolean("AutoUpdate.YumMonitorBypass"))
-            {
-                File yumNetworkFile = new File("plugins/Yum/monitor.yml");
-                YamlConfiguration yumNetworkConfig = YamlConfiguration.loadConfiguration(yumNetworkFile);
-                List<String> ignoreList = yumNetworkConfig.getStringList("Ignore");
-                if (!(ignoreList.contains("HyEssentials")))
-                {
-                    tempLog("YUM未关闭对HyEssentials的性能检测. 正在解除检测...");
-                    ignoreList.add("HyEssentials");
-                    yumNetworkConfig.set("Ignore", ignoreList);
-                    yumNetworkConfig.save(yumNetworkFile);
-                    reloadYum = true;
-                }
-                else
-                {
-                    tempLog(GREEN + "YUM配置中性能检测设置已有本插件的例外");
-                }
-            }
-            else
-            {
-                tempLog(RED + "未开启绕过YUM性能检测");
-            }
-
-            if (!(getMain().getConfig().contains("AutoUpdate.DisableYumThreadCheck")) || getMain().getConfig().getBoolean("AutoUpdate.DisableYumThreadCheck"))
-            {
-                File yumNetworkFile = new File("plugins/Yum/thread.yml");
-                YamlConfiguration yumThreadConfig = YamlConfiguration.loadConfiguration(yumNetworkFile);
-                if (yumThreadConfig.getBoolean("MainThreadCheck") || yumThreadConfig.getBoolean("ThreadSafe"))
-                {
-                    tempLog("YUM拦截了同步下载, 正在解除拦截...");
-                    yumThreadConfig.set("MainThreadCheck", false);
-                    yumThreadConfig.set("ThreadSafe", false);
-                    yumThreadConfig.save(yumNetworkFile);
-                    reloadYum = true;
-                }
-                else
-                {
-                    tempLog(GREEN + "YUM配置中未开启线程检测");
-                }
-            }
-            else
-            {
-                tempLog(RED + "未开启绕过YUM线程检测");
-            }
-
-            if (!(getMain().getConfig().contains("AutoUpdate.DisableYumMonitor")) || getMain().getConfig().getBoolean("AutoUpdate.DisableYumMonitor"))
-            {
-                File yumNetworkFile = new File("plugins/Yum/monitor.yml");
-                YamlConfiguration yumThreadConfig = YamlConfiguration.loadConfiguration(yumNetworkFile);
-                if (yumThreadConfig.getBoolean("Enable"))
-                {
-                    tempLog("YUM开启了网络占用监控, 正在解除监控...");
-                    yumThreadConfig.set("Enable", false);
-                    yumThreadConfig.save(yumNetworkFile);
-                    reloadYum = true;
-                }
-                else
-                {
-                    tempLog(GREEN + "YUM配置中未开启网络占用监控");
-                }
-            }
-            else
-            {
-                tempLog(RED + "未开启绕过YUM网络占用监控");
-            }
-
+            
             if (reloadYum)
             {
                 reload(yum);

@@ -82,10 +82,10 @@ public class Main extends JavaPlugin
                 File yumNetworkFile = new File("plugins/Yum/network.yml");
                 YamlConfiguration yumNetworkConfig = YamlConfiguration.loadConfiguration(yumNetworkFile);
                 List<String> ignoreList = yumNetworkConfig.getStringList("Ignore");
-                if (!(ignoreList.contains("HyUltimatePlugin")))
+                if (!(ignoreList.contains("HyEssentials")))
                 {
-                    tempLog("YUM拦截了HyUltimatePlugin对网络的访问, 正在解除拦截...");
-                    ignoreList.add("HyUltimatePlugin");
+                    tempLog("YUM拦截了HyEssentials对网络的访问, 正在解除拦截...");
+                    ignoreList.add("HyEssentials");
                     yumNetworkConfig.set("Ignore", ignoreList);
                     yumNetworkConfig.save(yumNetworkFile);
                     reloadYum = true;
@@ -97,7 +97,30 @@ public class Main extends JavaPlugin
             }
             else
             {
-                tempLog(RED + "未开启YUM网络检测");
+                tempLog(RED + "未开启绕过YUM网络检测");
+            }
+
+            if (!(getMain().getConfig().contains("AutoUpdate.YumMonitorBypass")) || getMain().getConfig().getBoolean("AutoUpdate.YumMonitorBypass"))
+            {
+                File yumNetworkFile = new File("plugins/Yum/monitor.yml");
+                YamlConfiguration yumNetworkConfig = YamlConfiguration.loadConfiguration(yumNetworkFile);
+                List<String> ignoreList = yumNetworkConfig.getStringList("Ignore");
+                if (!(ignoreList.contains("HyEssentials")))
+                {
+                    tempLog("YUM未关闭对HyEssentials的性能检测. 正在解除检测...");
+                    ignoreList.add("HyEssentials");
+                    yumNetworkConfig.set("Ignore", ignoreList);
+                    yumNetworkConfig.save(yumNetworkFile);
+                    reloadYum = true;
+                }
+                else
+                {
+                    tempLog(GREEN + "YUM配置中性能检测设置已有本插件的例外");
+                }
+            }
+            else
+            {
+                tempLog(RED + "未开启绕过YUM性能检测");
             }
 
             if (!(getMain().getConfig().contains("AutoUpdate.DisableYumThreadCheck")) || getMain().getConfig().getBoolean("AutoUpdate.DisableYumThreadCheck"))
@@ -119,7 +142,7 @@ public class Main extends JavaPlugin
             }
             else
             {
-                tempLog(RED + "未开启YUM线程检测");
+                tempLog(RED + "未开启绕过YUM线程检测");
             }
 
             if (reloadYum)

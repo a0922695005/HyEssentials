@@ -94,16 +94,14 @@ public class UrlUpdater
      */
     public void repeatUpdate(long period)
     {
-        Thread thread = new Thread((Runnable) new BukkitRunnable()
+        new BukkitRunnable()
         {
             @Override
             public void run()
             {
                 update();
             }
-        }.runTaskTimerAsynchronously(getMain(), 0L, period * 20));
-        thread.setName("Update Check");
-        thread.start();
+        }.runTaskTimerAsynchronously(getMain(), 0L, period * 20);
     }
 
     /**
@@ -111,16 +109,14 @@ public class UrlUpdater
      */
     public void asyncUpdate()
     {
-        Thread thread = new Thread((Runnable) new BukkitRunnable()
+        new BukkitRunnable()
         {
             @Override
             public void run()
             {
                 update();
             }
-        }.runTaskAsynchronously(getMain()));
-        thread.setName("Update Check");
-        thread.start();
+        }.runTaskAsynchronously(getMain());
     }
 
     /**

@@ -1,11 +1,6 @@
 package cc.moecraft.hykilpikonna.essentials;
 
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
 
 import static cc.moecraft.hykilpikonna.essentials.Main.getMain;
 import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
@@ -49,13 +44,14 @@ public class Config
 
     private void readConfig()
     {
-
+        loglogger.setDebug(config.getBoolean("Debug"));
     }
 
     private void writeDefaultConfig()
     {
         writeConfig();
 
+        config.addDefault("Debug", false);
         config.addDefault("AutoUpdate.Enable", true);
         config.addDefault("AutoUpdate.Default.TimeoutInSeconds", 3);
         config.addDefault("AutoUpdate.Default.CheckDelayInSeconds", 3600);

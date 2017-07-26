@@ -75,6 +75,7 @@ public class UrlUpdater
         this.latestVersion = downloadPluginYML(latestPluginYmlURL);
 
         loglogger.Debug("  - 最新版本     = " + this.latestVersion);
+        loglogger.Debug("  - 检查延迟     = " + period);
 
         if (repeatUpdate) repeatUpdate(period);
     }

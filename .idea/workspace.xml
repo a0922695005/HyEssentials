@@ -7,12 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f0c2604c-41da-4f51-817a-e27ddce2ce51" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/artifacts/HyEssentials/HyEssentials.jar" afterPath="$PROJECT_DIR$/out/artifacts/HyEssentials/HyEssentials.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HyEssentials/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater$1.class" afterPath="$PROJECT_DIR$/out/production/HyEssentials/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HyEssentials/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater$2.class" afterPath="$PROJECT_DIR$/out/production/HyEssentials/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HyEssentials/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.class" afterPath="$PROJECT_DIR$/out/production/HyEssentials/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/HyEssentials/plugin.yml" afterPath="$PROJECT_DIR$/out/production/HyEssentials/plugin.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java" afterPath="$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
     </list>
@@ -42,8 +36,8 @@
       <file leaf-file-name="Config.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="589">
-              <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="65" />
+            <state relative-caret-position="864">
+              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -62,13 +56,13 @@
       <file leaf-file-name="UrlUpdater.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="282">
-              <caret line="103" column="39" lean-forward="false" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
+            <state relative-caret-position="225">
+              <caret line="68" column="64" lean-forward="true" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#3771#3917#0" expanded="true" />
-                <element signature="e#3916#3917#0" expanded="true" />
-                <marker date="1501049901144" expanded="true" signature="13414:13420" ph="{...}" />
+                <element signature="e#3824#3970#0" expanded="true" />
+                <element signature="e#3969#3970#0" expanded="true" />
+                <marker date="1501050454056" expanded="true" signature="13467:13473" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -708,12 +702,12 @@
       <workItem from="1500631986739" duration="622000" />
       <workItem from="1500641752520" duration="29000" />
       <workItem from="1500660906046" duration="1543000" />
-      <workItem from="1501048022763" duration="1485000" />
+      <workItem from="1501048022763" duration="2002000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26678000" />
+    <option name="totallyTimeSpent" value="27195000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1146,21 +1140,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/Config.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="589">
-          <caret line="60" column="27" lean-forward="false" selection-start-line="60" selection-start-column="27" selection-end-line="60" selection-end-column="65" />
+        <state relative-caret-position="864">
+          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/cc/moecraft/hykilpikonna/essentials/updater/UrlUpdater.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="282">
-          <caret line="103" column="39" lean-forward="false" selection-start-line="103" selection-start-column="39" selection-end-line="103" selection-end-column="39" />
+        <state relative-caret-position="225">
+          <caret line="68" column="64" lean-forward="true" selection-start-line="68" selection-start-column="64" selection-end-line="68" selection-end-column="64" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#3771#3917#0" expanded="true" />
-            <element signature="e#3916#3917#0" expanded="true" />
-            <marker date="1501049901144" expanded="true" signature="13414:13420" ph="{...}" />
+            <element signature="e#3824#3970#0" expanded="true" />
+            <element signature="e#3969#3970#0" expanded="true" />
+            <marker date="1501050454056" expanded="true" signature="13467:13473" ph="{...}" />
           </folding>
         </state>
       </provider>

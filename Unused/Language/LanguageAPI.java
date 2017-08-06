@@ -3,7 +3,7 @@ package cc.moecraft.hykilpikonna.essentials.Language;
 import static cc.moecraft.hykilpikonna.essentials.Config.checkConfig;
 import static cc.moecraft.hykilpikonna.essentials.Main.config;
 import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
-import static cc.moecraft.hykilpikonna.essentials.utils.StringUtils.removeColorCode;
+import static cc.moecraft.hykilpikonna.essentials.Utils.StringUtils.removeColorCode;
 
 import java.io.File;
 import java.io.IOException;

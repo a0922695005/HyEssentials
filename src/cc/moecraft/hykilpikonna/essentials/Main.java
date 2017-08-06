@@ -11,7 +11,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import static cc.moecraft.hykilpikonna.essentials.utils.PluginUtil.reload;
+import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.reload;
 import static org.bukkit.ChatColor.GREEN;
 import static org.bukkit.ChatColor.RED;
 

@@ -1,4 +1,4 @@
-package cc.moecraft.hykilpikonna.essentials.utils;
+package cc.moecraft.hykilpikonna.essentials.Utils;
 
 import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
 

@@ -11,9 +11,9 @@ import java.nio.file.Files;
 
 import static cc.moecraft.hykilpikonna.essentials.Main.getMain;
 import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
-import static cc.moecraft.hykilpikonna.essentials.utils.PluginUtil.load;
-import static cc.moecraft.hykilpikonna.essentials.utils.PluginUtil.reload;
-import static cc.moecraft.hykilpikonna.essentials.utils.PluginUtil.unload;
+import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.load;
+import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.reload;
+import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.unload;
 import static org.bukkit.ChatColor.GREEN;
 import static org.bukkit.ChatColor.RED;
 

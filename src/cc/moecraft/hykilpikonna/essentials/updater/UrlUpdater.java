@@ -11,9 +11,9 @@ import java.nio.file.Files;
 
 import static cc.moecraft.hykilpikonna.essentials.Main.getMain;
 import static cc.moecraft.hykilpikonna.essentials.Main.loglogger;
-import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.load;
-import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.reload;
-import static cc.moecraft.hykilpikonna.essentials.Utils.PluginUtil.unload;
+import static cc.moecraft.hykilpikonna.essentials.utils.PluginUtil.load;
+import static cc.moecraft.hykilpikonna.essentials.utils.PluginUtil.reload;
+import static cc.moecraft.hykilpikonna.essentials.utils.PluginUtil.unload;
 import static org.bukkit.ChatColor.GREEN;
 import static org.bukkit.ChatColor.RED;
 
@@ -355,15 +355,21 @@ public class UrlUpdater
             }
         }
         //创建目标文件
-        try {
-            if (file.createNewFile()) {
+        try
+        {
+            if (file.createNewFile())
+            {
                 loglogger.Debug(GREEN + "创建文件" + file + "成功");
                 return true;
-            } else {
+            }
+            else
+            {
                 loglogger.Debug(RED + "创建文件" + file + "失败");
                 return false;
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
             loglogger.Debug(RED + "创建文件" + file + "失败");
             return false;
@@ -397,41 +403,6 @@ public class UrlUpdater
         {
             loglogger.Debug(RED + "创建目录" + destDirName + "失败!");
             return false;
-        }
-    }
-
-
-    public static String createTempFile(String prefix, String suffix, String dirName) {
-        File tempFile = null;
-        if (dirName == null) {
-            try{
-                //在默认文件夹下创建临时文件
-                tempFile = File.createTempFile(prefix, suffix);
-                //返回临时文件的路径
-                return tempFile.getCanonicalPath();
-            } catch (IOException e) {
-                e.printStackTrace();
-                loglogger.Debug("创建临时文件失败！" + e.getMessage());
-                return null;
-            }
-        } else {
-            File dir = new File(dirName);
-            //如果临时文件所在目录不存在，首先创建
-            if (!dir.exists()) {
-                if (!createDir(dirName)) {
-                    loglogger.Debug("创建临时文件失败，不能创建临时文件所在的目录！");
-                    return null;
-                }
-            }
-            try {
-                //在指定目录下创建临时文件
-                tempFile = File.createTempFile(prefix, suffix, dir);
-                return tempFile.getCanonicalPath();
-            } catch (IOException e) {
-                e.printStackTrace();
-                loglogger.Debug("创建临时文件失败！" + e.getMessage());
-                return null;
-            }
         }
     }
 }

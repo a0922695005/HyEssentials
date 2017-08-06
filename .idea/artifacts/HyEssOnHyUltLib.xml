@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="HyEssOnHyUltLib">
+    <output-path>$PROJECT_DIR$/../HyUltimatePlugin/lib/hyessentials/hyess-jar/1.0</output-path>
+    <root id="archive" name="HyEssOnHyUltLib.jar">
+      <element id="module-output" name="HyEssentials" />
+    </root>
+  </artifact>
+</component>
